@@ -38,10 +38,9 @@ final class ArgumentMetadataFactory implements ArgumentMetadataFactoryInterface
             }
 
             if (isset($reflectionAttributes[0])) {
+                /** @var null|ArgumentInterface $attribute */
                 $attribute = $reflectionAttributes[0]->newInstance();
             }
-
-            \assert($attribute instanceof ArgumentInterface);
 
             $arguments[] = new ArgumentMetadata($param->getName(), $this->getType($param, $reflection), $param->isVariadic(), $param->isDefaultValueAvailable(), $param->isDefaultValueAvailable() ? $param->getDefaultValue() : null, $param->allowsNull(), $attribute);
         }
